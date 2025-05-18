@@ -10,7 +10,7 @@ export default function ScanScreen() {
       <Button
         title="Go to Detail"
         onPress={() => {
-          navigator.navigate("productDetails");
+          navigator.navigate("productDetails", { id: 1 });
         }}
       />
     </View>
