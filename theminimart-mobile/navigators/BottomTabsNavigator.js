@@ -1,8 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
 import CreateProductScreen from "../screens/CreateProductScreen";
-import ProductListScreen from "../screens/ProductListScreen";
-import ScanScreen from "../screens/ScanScreen";
+import ProductListNavigator from "./ProductListNavigtor";
+import ScanNavigator from "./ScanNavigator";
 
 const Tab = createBottomTabNavigator();
 
@@ -10,8 +9,16 @@ export default function BottomTabsNavigator() {
   return (
     <Tab.Navigator>
       <Tab.Screen name="createProduct" component={CreateProductScreen} />
-      <Tab.Screen name="productList" component={ProductListScreen} />
-      <Tab.Screen name="scan" component={ScanScreen} />
+      <Tab.Screen
+        name="productListNavigator"
+        component={ProductListNavigator}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="scanNavigator"
+        component={ScanNavigator}
+        options={{ headerShown: false }}
+      />
     </Tab.Navigator>
   );
 }
