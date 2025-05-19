@@ -1,1 +1,0 @@
-// TODO: page for viewing all products
