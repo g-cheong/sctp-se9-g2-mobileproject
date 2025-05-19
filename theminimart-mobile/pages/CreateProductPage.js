@@ -1,1 +1,0 @@
-// TODO: page for creating a product
