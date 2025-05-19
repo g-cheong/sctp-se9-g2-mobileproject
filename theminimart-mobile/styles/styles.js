@@ -1,5 +1,4 @@
-import { StyleSheet, ScrollView } from "react-native";
-import { Colors } from "./color";
+import { StyleSheet } from "react-native";
 import { Font } from "./font";
 import { Colors } from "./colors";
 
@@ -44,13 +43,13 @@ export const styles = StyleSheet.create({
     gap: 20,
     justifyContent: "center",
   },
-  textInput: {
-    width: 300,
-    padding: 12,
-    borderWidth: 2,
-    borderRadius: 10,
-    borderColor: Colors.OFF_WHITE_DARK,
-  },
+  // textInput: {
+  //   width: 300,
+  //   padding: 12,
+  //   borderWidth: 2,
+  //   borderRadius: 10,
+  //   borderColor: Colors.OFF_WHITE_DARK,
+  // },
   primaryBtn: {
     alignItems: "center",
     backgroundColor: Colors.PRIMARY,
@@ -83,25 +82,14 @@ export const styles = StyleSheet.create({
     fontSize: Font.TEXT1,
     width: `70%`,
     height: 50,
-    borderWidth: 1, 
-    borderColor: Colors.BLACK,
-  },
-  textInput: {
-    height: 50,
-    fontSize: Font.TEXT1,
-    borderColor: Colors.BLACK,
     borderWidth: 1,
-    alignContent: `center`,
-    alignItems: `center`,
-    // textAlign: `center`,
-    // textAlignVertical: `center`,
-    width: `70%`,
+    borderColor: Colors.BLACK,
   },
   dropdown: {
     fontSize: Font.TEXT1,
     width: `70%`,
     height: 50,
-    borderWidth: 1, 
+    borderWidth: 1,
     borderColor: Colors.BLACK,
   },
   productDetailsTitle: {
@@ -131,7 +119,6 @@ export const styles = StyleSheet.create({
     alignItems: "stretch",
     width: "95%",
     maxHeight: "30%",
-    
   },
   productDetailsQRCodeView: {
     width: 120,
@@ -145,15 +132,15 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
   closeButton: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 40,
-    alignSelf: 'center',
-    backgroundColor: 'rgba(255,255,255,0.7)',
+    alignSelf: "center",
+    backgroundColor: "rgba(255,255,255,0.7)",
     borderRadius: 8,
     padding: 10,
   },
   scanMoreView: {
-    position: 'absolute',
+    position: "absolute",
     bottom: "30%",
     left: 0,
     right: 0,

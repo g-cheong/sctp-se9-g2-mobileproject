@@ -13,7 +13,7 @@ export default function ProductListScreenCard({data, navigation}) {
             <Button
                 title="Go to Detail"
                 onPress={() => {
-                navigation.navigate("productDetailsScreen", data);
+                navigation.navigate("productDetails", {id:data.id});
                 }}
             />
             </View>

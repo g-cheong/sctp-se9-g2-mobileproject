@@ -1,10 +1,17 @@
-import { ActivityIndicator, Button, FlatList, Image, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  Button,
+  FlatList,
+  Image,
+  Text,
+  View,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { styles } from "../styles/styles";
 import ProductListScreenCard from "../components/ProductListScreenCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Colors } from "../styles/color";
+import { Colors } from "../styles/colors";
 
 // TODO: make improvements, maybe allow user to sort by categories, search by price
 
@@ -19,10 +26,10 @@ export default function ProductListScreen() {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response =  await axios.get(apiUrl);
+        const response = await axios.get(apiUrl);
         console.log("API response:", response.data);
         setData(response.data);
-      } catch(err) {
+      } catch (err) {
         console.log(err);
         setError(err);
       } finally {
@@ -32,7 +39,7 @@ export default function ProductListScreen() {
     fetchData();
   }, []);
 
-  if(loading) {
+  if (loading) {
     return (
       <View>
         <ActivityIndicator size="large" color={Colors.PRIMARY} />
@@ -40,25 +47,23 @@ export default function ProductListScreen() {
     );
   }
 
-  if(error) {
+  if (error) {
     return (
       <View>
-        <Text>
-          {error.messsage}
-        </Text>
+        <Text>{error.messsage}</Text>
       </View>
     );
   }
 
-  const productListScreenCard = ({item}) => (
-    <ProductListScreenCard key={item.id} data={item} navigation={navigation}/>
+  const productListScreenCard = ({ item }) => (
+    <ProductListScreenCard key={item.id} data={item} navigation={navigation} />
   );
   const keyExtractor = (item) => item.id;
-  
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>ProductListScreen</Text>
-      <FlatList 
+      <FlatList
         data={data}
         renderItem={productListScreenCard}
         keyExtractor={keyExtractor}
