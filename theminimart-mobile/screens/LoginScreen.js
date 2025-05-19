@@ -11,9 +11,15 @@ import { styles } from "../styles/styles";
 import { useNavigation } from "@react-navigation/native";
 import blueBagImg from "../assets/bluebag.png";
 import Button from "../components/Button";
+import { useContext, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 export default function LoginScreen() {
   const navigator = useNavigation();
+  const { login } = useContext(AuthContext);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <View style={styles.container}>
       <TouchableWithoutFeedback
@@ -36,14 +42,25 @@ export default function LoginScreen() {
             source={blueBagImg}
           />
           <View style={styles.loginContainer}>
-            <TextInput style={styles.textInput} placeholder="Username" />
-            <TextInput style={styles.textInput} placeholder="Password" />
+            <TextInput
+              style={styles.textInput}
+              placeholder="Username"
+              value={username}
+              // TODO:ADD ONCHANGE FOR LOGIN
+              onChangeText={setUsername}
+            />
+            <TextInput
+              style={styles.textInput}
+              placeholder="Password"
+              value={password}
+              onChangeText={setPassword}
+            />
             <Button
               btnStyle={styles.primaryBtn}
               textStyle={styles.primaryBtnText}
               title="Login"
               onPress={() => {
-                // TODO: Login Logic
+                login(username, password);
               }}
             />
             <Button
