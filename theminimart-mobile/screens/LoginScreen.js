@@ -21,12 +21,12 @@ export default function LoginScreen() {
   const [password, setPassword] = useState("");
 
   return (
-    <View style={styles.container}>
-      <TouchableWithoutFeedback
-        style={styles.container}
-        onPress={() => {
-          Keyboard.dismiss();
-        }}>
+    <TouchableWithoutFeedback
+      style={styles.container}
+      onPress={() => {
+        Keyboard.dismiss();
+      }}>
+      <View style={styles.container}>
         <KeyboardAvoidingView
           style={styles.centerContainer}
           behavior="padding"
@@ -46,7 +46,6 @@ export default function LoginScreen() {
               style={styles.textInput}
               placeholder="Username"
               value={username}
-              // TODO:ADD ONCHANGE FOR LOGIN
               onChangeText={setUsername}
             />
             <TextInput
@@ -73,7 +72,7 @@ export default function LoginScreen() {
             />
           </View>
         </KeyboardAvoidingView>
-      </TouchableWithoutFeedback>
-    </View>
+      </View>
+    </TouchableWithoutFeedback>
   );
 }

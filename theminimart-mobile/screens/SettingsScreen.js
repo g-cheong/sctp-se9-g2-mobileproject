@@ -7,7 +7,7 @@ export default function SettingsScreen() {
   const { logout } = useContext(AuthContext);
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>ScanScreen</Text>
+      <Text style={styles.title}>SettingsScreen</Text>
       <Button title="Logout" onPress={logout} />
     </View>
   );
