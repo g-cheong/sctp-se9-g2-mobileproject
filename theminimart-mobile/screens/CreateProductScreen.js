@@ -15,11 +15,6 @@ const data = [
 ];
 
 export default function CreateProductScreen() {
-  // const [title, setTitle] = useState("");
-  // const [price, setPrice] = useState(0.00);
-  // const [description, setDescription] = useState("");
-  // const [category, setCategory] = useState(null);
-  // const [productImage, setProductImage] = useState(null);
   const formDefaults = {
     title: "",
     price: "",
