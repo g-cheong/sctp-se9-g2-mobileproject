@@ -15,22 +15,38 @@ const data = [
 ];
 
 export default function CreateProductScreen() {
-  const [title, setTitle] = useState("");
-  const [price, setPrice] = useState(0.00);
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState(null);
-  const [productImage, setProductImage] = useState(null);
+  // const [title, setTitle] = useState("");
+  // const [price, setPrice] = useState(0.00);
+  // const [description, setDescription] = useState("");
+  // const [category, setCategory] = useState(null);
+  // const [productImage, setProductImage] = useState(null);
+  const formDefaults = {
+    title: "",
+    price: "",
+    description: "",
+    category: null,
+    productImage: null,
+  };
   const { categories, loadingCategories, errorCategories} = useCategories();
+  const [formFields, setFormFields] = useState(formDefaults);
 
   const submitForm = () => {
-    if(!title || !price || !description || !category || !productImage) {
+    if(!formFields.title || !formFields.price || !formFields.description || !formFields.category || !formFields.productImage) {
       Alert.alert("Missing form information", "Please ensure all fields are filled/selected.");
     } else {
-      setTitle("");
-      setPrice(0.00);
-      setDescription("");
-      setCategory(null);
+      setFormFields(formDefaults);
     }
+  };
+
+  const resetForm = () => {
+    setFormFields(formDefaults);
+  }
+
+  const handleInputChange = (fieldName, value) => {
+    setFormFields(prevFields => ({
+      ...prevFields,
+      [fieldName]: value,
+    }));
   };
 
   const pickImage = async () => {
@@ -42,7 +58,7 @@ export default function CreateProductScreen() {
     });
 
     if(!result.canceled) {
-      setProductImage(result.assets[0].uri);
+      setFormFields({...formFields, productImage: result.assets[0].uri});
     }
   }
 
@@ -58,28 +74,35 @@ export default function CreateProductScreen() {
   return (
     <View style={[styles.createProductScreenContainer, styles.container]}>
       <Text style={styles.title}>CreateProductScreen</Text>
-      <TextInput style={styles.textInput} placeholder="Title" value={title} onChangeText={setTitle}/>
-      <TextInput style={styles.textInput} placeholder="Price" value={price} onChangeText={setPrice}/>
-      <TextInput style={styles.textInput} placeholder="Description" value={description} onChangeText={setDescription}/>
+      <TextInput style={styles.textInput} placeholder="Title" value={formFields.title} onChangeText={(text) => handleInputChange("title", text)}/>
+      <TextInput style={styles.textInput} placeholder="Price" value={formFields.price} onChangeText={(text) => handleInputChange("price", text)}/>
+      <TextInput style={styles.textInput} placeholder="Description" value={formFields.description} onChangeText={(text) => handleInputChange("description", text)}/>
       <Dropdown 
         style={styles.dropdown}
-        placeholderStyle={Font.TEXT1}
+        placeholderStyle={styles.dropdownPlaceholder}
         selectedTextStyle={Font.TEXT1}
         search
         data={categories}
-        value={category}
+        value={formFields.category}
         labelField="label"
         valueField="value"
         placeholder="Select Item"
         onChange={ item => {
-          setCategory(item.value)
+          handleInputChange("category", item.value);
         }}
       />
       <View style={styles.imagePickerContainer}>
-        <Button title="Pick a product image from the photo gallery" onPress={pickImage} style={styles.imagePickerButton}/>
-        {productImage && <Image source={{ uri: productImage}} style={styles.imagePreview}/>}
+        {formFields.productImage 
+          ? <Image source={{ uri: formFields.productImage}} style={styles.imagePreview}/> 
+          : <Text styles={styles.imagePreview}> No image selected </Text>
+        }
       </View>
-      <Button title="Submit" onPress={submitForm}/>
+      <View style={styles.createProductScreenButtonsContainer}>
+        <Button title="Submit" onPress={submitForm} />
+        <Button title="Pick image" onPress={pickImage} />
+        <Button title="Reset Form" onPress={resetForm} />
+      </View>
+
     </View>
   );
 }

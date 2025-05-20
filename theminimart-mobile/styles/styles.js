@@ -2,6 +2,11 @@ import { StyleSheet } from "react-native";
 import { Font } from "./font";
 import { Colors } from "./colors";
 
+const Border = {
+  RADIUS: 10,
+  WIDTH: 1,
+};
+
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -15,12 +20,33 @@ export const styles = StyleSheet.create({
     flexDirection: `row`,
     flexGrow: 1,
     flexWrap: `wrap`,
-    justifyContent: `space-evenly`,
+    justifyContent: "flex-start",
     alignItems: `center`,
     borderColor: Colors.BLACK,
-    borderWidth: 1,
+    borderWidth: Border.WIDTH,
+    borderRadius: Border.RADIUS,
     marginVertical: 5,
     width: `95%`,
+  },
+  productListScreenCardImage: {
+    flex: 1,
+    resizeMode: "contain",
+  },
+  productListScreenRow: {
+    alignItems: "center",
+    flexDirection: "row",
+    flexWrap: "nowrap",
+    width: "100%",
+    paddingVertical: 5,
+  },
+  productListScreenHeaderText: {
+    fontWeight: Font.BOLD,
+    width: "30%",
+    flexShrink: 0,
+  },
+  productListScreenText: {
+    flexShrink: 1,
+    flexGrow: 1,
   },
   centerContainer: {
     flex: 1,
@@ -53,7 +79,7 @@ export const styles = StyleSheet.create({
   primaryBtn: {
     alignItems: "center",
     backgroundColor: Colors.PRIMARY,
-    borderRadius: 10,
+    borderRadius: Border.RADIUS,
   },
   primaryBtnText: {
     color: Colors.WHITE,
@@ -70,31 +96,29 @@ export const styles = StyleSheet.create({
   textInput: {
     height: 50,
     fontSize: Font.TEXT1,
+    color: Colors.GREY,
     borderColor: Colors.BLACK,
-    borderWidth: 1,
+    borderWidth: Border.WIDTH,
+    borderRadius: Border.RADIUS,
     alignContent: `center`,
     alignItems: `center`,
-    // textAlign: `center`,
-    // textAlignVertical: `center`,
     width: `70%`,
   },
   dropdown: {
     fontSize: Font.TEXT1,
     width: `70%`,
     height: 50,
-    borderWidth: 1,
+    borderWidth: Border.WIDTH,
+    borderRadius: Border.RADIUS,
     borderColor: Colors.BLACK,
   },
-  dropdown: {
+  dropdownPlaceholder: {
+    color: Colors.GREY,
     fontSize: Font.TEXT1,
-    width: `70%`,
-    height: 50,
-    borderWidth: 1,
-    borderColor: Colors.BLACK,
   },
   productDetailsTitle: {
     textAlign: "center",
-    fontSize: 16,
+    fontSize: Font.TEXT2,
     fontWeight: 700,
     padding: 10,
   },
@@ -116,15 +140,20 @@ export const styles = StyleSheet.create({
   },
   productDetailsPrice: {
     textAlign: "center",
-    fontSize: 15,
+    fontSize: Font.TEXT2,
     fontWeight: 600,
     padding: 10,
   },
   productDetailsDescriptionView: {
     padding: 10,
     margin: 10,
+<<<<<<< Updated upstream
     borderWidth: 1,
     borderColor: Colors.OFF_WHITE_DARKER,
+=======
+    borderWidth: Border.WIDTH,
+    borderColor: "#ccc",
+>>>>>>> Stashed changes
     borderRadius: 25,
     backgroundColor: Colors.BACKGROUND,
     alignItems: "stretch",
@@ -135,10 +164,17 @@ export const styles = StyleSheet.create({
     width: 150,
     height: 150,
     padding: 8,
+<<<<<<< Updated upstream
     marginTop: "5%",
     borderWidth: 1,
     borderColor: Colors.OFF_WHITE_DARKER,
     borderRadius: 20,
+=======
+    marginTop: "20%",
+    borderWidth: Border.WIDTH,
+    borderColor: "#ccc",
+    borderRadius: 25,
+>>>>>>> Stashed changes
     alignItems: "center",
     justifyContent: "flex-start",
   },
@@ -165,18 +201,24 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   imagePickerContainer: {
+    height: 200,
     width: "70%", 
+    borderColor: Colors.GREY,
+    borderWidth: Border.WIDTH,
+    borderRadius: Border.RADIUS,
+    justifyContent: "center",
     alignItems: "center",
   },
-  imagePickerButton: {
-    width: "20%",
-  },
   imagePreview: {
+    flex: 1,
+    resizeMode: "contain",
     height: 200, 
     width: "100%",
   },
-  productListScreenCardImage: {
-    flex: 1,
-    resizeMode: "contain",
+  createProductScreenButtonsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    height: 50,
+    width: "70%",
   },
 });
