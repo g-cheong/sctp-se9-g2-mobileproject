@@ -3,16 +3,9 @@ import { styles } from "../styles/styles";
 import { Dropdown } from "react-native-element-dropdown";
 import { useState } from "react";
 import { Font } from "../styles/font";
-import { useCategories, useProducts } from "../constants/api";
+import { useCategories } from "../constants/api";
 import { Colors } from "../styles/colors";
 import * as ImagePicker from "expo-image-picker";
-
-const data = [
-  {label: 'Item1', value: 'Item1'},
-  {label: 'Item2', value: 'Item2'},
-  {label: 'Item3', value: 'Item3'},
-  {label: 'Item4', value: 'Item4'},
-];
 
 export default function CreateProductScreen() {
   const formDefaults = {
@@ -22,7 +15,7 @@ export default function CreateProductScreen() {
     category: null,
     productImage: null,
   };
-  const { categories, loadingCategories, errorCategories} = useCategories();
+  const { categories, loadingCategories} = useCategories();
   const [formFields, setFormFields] = useState(formDefaults);
 
   const submitForm = () => {
