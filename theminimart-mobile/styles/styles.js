@@ -147,13 +147,8 @@ export const styles = StyleSheet.create({
   productDetailsDescriptionView: {
     padding: 10,
     margin: 10,
-<<<<<<< Updated upstream
     borderWidth: 1,
     borderColor: Colors.OFF_WHITE_DARKER,
-=======
-    borderWidth: Border.WIDTH,
-    borderColor: "#ccc",
->>>>>>> Stashed changes
     borderRadius: 25,
     backgroundColor: Colors.BACKGROUND,
     alignItems: "stretch",
@@ -164,17 +159,10 @@ export const styles = StyleSheet.create({
     width: 150,
     height: 150,
     padding: 8,
-<<<<<<< Updated upstream
     marginTop: "5%",
     borderWidth: 1,
     borderColor: Colors.OFF_WHITE_DARKER,
     borderRadius: 20,
-=======
-    marginTop: "20%",
-    borderWidth: Border.WIDTH,
-    borderColor: "#ccc",
-    borderRadius: 25,
->>>>>>> Stashed changes
     alignItems: "center",
     justifyContent: "flex-start",
   },
