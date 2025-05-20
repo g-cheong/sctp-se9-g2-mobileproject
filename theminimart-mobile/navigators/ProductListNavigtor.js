@@ -15,7 +15,7 @@ export default function ProductListNavigator() {
         contentStyle: { backgroundColor: Colors.OFF_WHITE_LIGHT },
       }}>
       <Stack.Screen name="productListScreen" component={ProductListScreen} />
-      <Stack.Screen name="productDetails" component={ProductDetailsScreen} />
+      <Stack.Screen name="productDetails" component={ProductDetailsScreen} options={{ title: "Product Details" }} />
     </Stack.Navigator>
   );
 }

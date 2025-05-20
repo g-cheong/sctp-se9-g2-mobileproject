@@ -1,14 +1,9 @@
-import { useState, useEffect } from "react";
-import { Button, Text, View, Alert, Modal, StyleSheet } from "react-native";
+import { useState, useCallback } from "react";
+import { Button, Text, View, Alert, StyleSheet } from "react-native";
 import { styles } from "../styles/styles";
-import { useNavigation } from "@react-navigation/native";
-import { Camera, CameraView, useCameraPermissions, BarcodeScanningResult } from "expo-camera";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { CameraView, useCameraPermissions } from "expo-camera";
 import { Platform } from "react-native";
-/* import {
-  launchCameraAsync,
-  launchImageLibraryAsync,
-  useCameraPermissions,
-} from "expo-image-picker"; */
  
 export default function ScanScreen() {
   const navigator = useNavigation();
@@ -66,6 +61,16 @@ export default function ScanScreen() {
     }
   };
 
+  useFocusEffect(
+    useCallback(() => {
+      const resetScreen = () => {
+        setScanned(false);
+        setCameraVisible(false);
+      };
+      return resetScreen;
+    }, [])
+  );
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Scan Product</Text>
@@ -77,9 +82,9 @@ export default function ScanScreen() {
             onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}>
             </CameraView>
         
-          {/* <View style={[styles.closeButton, { position: 'absolute', top: 40, right: 20 }]}>
+          <View style={styles.closeButton}>
             <Button title="Close Camera" onPress={() => setCameraVisible(false)} />
-          </View> */}
+          </View>
         </View>
       )}
       
@@ -87,9 +92,8 @@ export default function ScanScreen() {
         <View style={styles.scanMoreView}>
           <Button title="Scan Again" onPress={() => setScanned(false)} />
         </View>
-      )}
-      
 
+      )}
     </View>
   );
 }

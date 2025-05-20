@@ -15,8 +15,8 @@ export default function ScanNavigator() {
   // contains the ProductDetailsScreen and BottomTabsNavigator(CreateProductScreen,ProductListScreen,ScanScreen)
   return (
     <Stack.Navigator screenOptions={stackScreenOptions}>
-      <Stack.Screen name="scanScreen" component={ScanScreen} />
-      <Stack.Screen name="productDetails" component={ProductDetailsScreen} />
+      <Stack.Screen name="scanScreen" component={ScanScreen} options={{ title: "Scan" }} />
+      <Stack.Screen name="productDetails" component={ProductDetailsScreen} options={{ title: "Product Details" }} />
     </Stack.Navigator>
   );
 }
