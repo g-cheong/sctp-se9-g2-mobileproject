@@ -23,17 +23,34 @@ export default function BottomTabsNavigator() {
       <Tab.Screen
         name="createProduct"
         component={CreateProductScreen}
-        options={{ title: "Create Product" }}
+        options={{
+          title: "Create Product",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="create-outline" size={size} color={color} />
+          ),
+        }}
       />
       <Tab.Screen
         name="productListNavigator"
         component={ProductListNavigator}
-        options={{ title: "Product List", headerShown: false }}
+        options={{
+          title: "Product List",
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="list-outline" size={size} color={color} />
+          ),
+        }}
       />
       <Tab.Screen
         name="scanNavigator"
         component={ScanNavigator}
-        options={{ title: "Scan", headerShown: false }}
+        options={{
+          title: "Scan",
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="qr-code-outline" size={size} color={color} />
+          ),
+        }}
       />
       <Tab.Screen
         name="settings"

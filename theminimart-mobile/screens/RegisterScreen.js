@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   Keyboard,
   KeyboardAvoidingView,
@@ -11,16 +12,40 @@ import { styles } from "../styles/styles";
 import { useNavigation } from "@react-navigation/native";
 import blueBagImg from "../assets/bluebag.png";
 import Button from "../components/Button";
+import { API_URL } from "../constants/api";
+import { useState } from "react";
+import axios from "axios";
 
 export default function RegisterScreen() {
   const navigator = useNavigation();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const registerHandler = async (username, password) => {
+    try {
+      console.log(username);
+      console.log(password);
+      const res = await axios.post(`${API_URL}users`, {
+        username,
+        password,
+      });
+      console.log(res);
+      Alert.alert("Registration Successful", "Redirecting to Login...");
+      navigator.goBack();
+    } catch (e) {
+      Alert.alert(
+        "Registration Error",
+        "Something went wrong with the registration. Try again later."
+      );
+      console.log(e);
+    }
+  };
   return (
-    <View style={styles.container}>
-      <TouchableWithoutFeedback
-        style={{ flex: 1 }}
-        onPress={() => {
-          Keyboard.dismiss();
-        }}>
+    <TouchableWithoutFeedback
+      style={styles.container}
+      onPress={() => {
+        Keyboard.dismiss();
+      }}>
+      <View style={styles.container}>
         <KeyboardAvoidingView
           style={styles.centerContainer}
           behavior="padding"
@@ -37,14 +62,24 @@ export default function RegisterScreen() {
           />
 
           <View style={styles.loginContainer}>
-            <TextInput style={styles.textInput} placeholder="Username" />
-            <TextInput style={styles.textInput} placeholder="Password" />
+            <TextInput
+              style={styles.textInput}
+              placeholder="Username"
+              value={username}
+              onChangeText={setUsername}
+            />
+            <TextInput
+              style={styles.textInput}
+              placeholder="Password"
+              value={password}
+              onChangeText={setPassword}
+            />
             <Button
               btnStyle={styles.primaryBtn}
               textStyle={styles.primaryBtnText}
-              title="Login"
+              title="Register"
               onPress={() => {
-                // navigator.navigate("bottomTabNavigator");
+                registerHandler(username, password);
               }}
             />
             <Button
@@ -57,7 +92,7 @@ export default function RegisterScreen() {
             />
           </View>
         </KeyboardAvoidingView>
-      </TouchableWithoutFeedback>
-    </View>
+      </View>
+    </TouchableWithoutFeedback>
   );
 }

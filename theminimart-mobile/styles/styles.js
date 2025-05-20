@@ -1,5 +1,4 @@
-import { StyleSheet, ScrollView } from "react-native";
-import { Colors } from "./color";
+import { StyleSheet } from "react-native";
 import { Font } from "./font";
 import { Colors } from "./colors";
 
@@ -44,13 +43,13 @@ export const styles = StyleSheet.create({
     gap: 20,
     justifyContent: "center",
   },
-  textInput: {
-    width: 300,
-    padding: 12,
-    borderWidth: 2,
-    borderRadius: 10,
-    borderColor: Colors.OFF_WHITE_DARK,
-  },
+  // textInput: {
+  //   width: 300,
+  //   padding: 12,
+  //   borderWidth: 2,
+  //   borderRadius: 10,
+  //   borderColor: Colors.OFF_WHITE_DARK,
+  // },
   primaryBtn: {
     alignItems: "center",
     backgroundColor: Colors.PRIMARY,
@@ -83,25 +82,14 @@ export const styles = StyleSheet.create({
     fontSize: Font.TEXT1,
     width: `70%`,
     height: 50,
-    borderWidth: 1, 
-    borderColor: Colors.BLACK,
-  },
-  textInput: {
-    height: 50,
-    fontSize: Font.TEXT1,
-    borderColor: Colors.BLACK,
     borderWidth: 1,
-    alignContent: `center`,
-    alignItems: `center`,
-    // textAlign: `center`,
-    // textAlignVertical: `center`,
-    width: `70%`,
+    borderColor: Colors.BLACK,
   },
   dropdown: {
     fontSize: Font.TEXT1,
     width: `70%`,
     height: 50,
-    borderWidth: 1, 
+    borderWidth: 1,
     borderColor: Colors.BLACK,
   },
   productDetailsTitle: {
@@ -169,5 +157,26 @@ export const styles = StyleSheet.create({
     left: 0,
     right: 0,
     alignItems: 'center',
+  },
+  loadingScreen: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  imagePickerContainer: {
+    width: "70%", 
+    alignItems: "center",
+  },
+  imagePickerButton: {
+    width: "20%",
+  },
+  imagePreview: {
+    height: 200, 
+    width: "100%",
+  },
+  productListScreenCardImage: {
+    flex: 1,
+    resizeMode: "contain",
   },
 });

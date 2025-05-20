@@ -9,11 +9,11 @@ export default function ProductListScreenCard({data, navigation}) {
     return(
         <View style={styles.productListScreenContainer}>
             <View style={{width: "30%", aspectRatio: 1}}>
-            <Image source={{uri: data.image}} style={{flex: 1}}/>
+            <Image style={styles.productListScreenCardImage} source={{uri: data.image}}/>
             <Button
                 title="Go to Detail"
                 onPress={() => {
-                navigation.navigate("productDetailsScreen", data);
+                navigation.navigate("productDetails", {id:data.id});
                 }}
             />
             </View>

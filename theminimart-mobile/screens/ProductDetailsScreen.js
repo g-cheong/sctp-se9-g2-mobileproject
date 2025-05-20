@@ -3,9 +3,10 @@ import axios from "axios";
 import { Text, View, Alert, ScrollView } from "react-native";
 import { styles } from "../styles/styles";
 import { useRoute } from "@react-navigation/native";
+import { API_URL } from "../constants/api";
 import QRCode from 'react-native-qrcode-svg';
 
-const API_URL = "https://677be8e220824100c07b3800.mockapi.io/";
+// const API_URL = "https://677be8e220824100c07b3800.mockapi.io/";
 
 export default function ProductDetailsScreen() {
   const route = useRoute();
