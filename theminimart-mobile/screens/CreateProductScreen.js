@@ -3,7 +3,7 @@ import { styles } from "../styles/styles";
 import { Dropdown } from "react-native-element-dropdown";
 import { useState } from "react";
 import { Font } from "../styles/font";
-import { useCategories } from "../constants/api";
+import { useCategories, useProducts } from "../constants/api";
 import { Colors } from "../styles/colors";
 import * as ImagePicker from "expo-image-picker";
 
@@ -17,11 +17,13 @@ export default function CreateProductScreen() {
   };
   const { categories, loadingCategories} = useCategories();
   const [formFields, setFormFields] = useState(formDefaults);
+  const {data, setData} = useProducts();
 
   const submitForm = () => {
     if(!formFields.title || !formFields.price || !formFields.description || !formFields.category || !formFields.productImage) {
       Alert.alert("Missing form information", "Please ensure all fields are filled/selected.");
     } else {
+      setData( prevData =>  [...prevData, formFields]);
       setFormFields(formDefaults);
     }
   };
@@ -61,7 +63,6 @@ export default function CreateProductScreen() {
 
   return (
     <View style={[styles.createProductScreenContainer, styles.container]}>
-      <Text style={styles.title}>CreateProductScreen</Text>
       <TextInput style={styles.textInput} placeholder="Title" value={formFields.title} onChangeText={(text) => handleInputChange("title", text)}/>
       <TextInput style={styles.textInput} placeholder="Price" value={formFields.price} onChangeText={(text) => handleInputChange("price", text)}/>
       <TextInput style={styles.textInput} placeholder="Description" value={formFields.description} onChangeText={(text) => handleInputChange("description", text)}/>

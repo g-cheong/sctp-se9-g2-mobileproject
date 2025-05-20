@@ -73,7 +73,6 @@ export default function ScanScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Scan Product</Text>
       <Button title="Scan QR Code" onPress={scanQRHandler} />
       {cameraVisible && (
         <View style={StyleSheet.absoluteFillObject}>

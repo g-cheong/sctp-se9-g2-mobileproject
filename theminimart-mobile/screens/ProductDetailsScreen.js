@@ -44,7 +44,6 @@ export default function ProductDetailsScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Product Details</Text>
       <Text style={styles.productDetailsTitle}>Product Title: {products.title}</Text>
       <Text style={styles.productDetailsCategory}>Product Category: {products.category}</Text>
       <View style={styles.productDetailsDescriptionView}>
