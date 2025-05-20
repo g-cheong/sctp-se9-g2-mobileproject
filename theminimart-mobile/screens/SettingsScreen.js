@@ -6,8 +6,7 @@ import { AuthContext } from "../context/AuthContext";
 export default function SettingsScreen() {
   const { logout } = useContext(AuthContext);
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>SettingsScreen</Text>
+    <View style={styles.centerContainer}>
       <Button title="Logout" onPress={logout} />
     </View>
   );

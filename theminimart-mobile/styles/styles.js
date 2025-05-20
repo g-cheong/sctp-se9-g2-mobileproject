@@ -1,6 +1,8 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import { Font } from "./font";
 import { Colors } from "./colors";
+
+const windowWidth = Dimensions.get("window").width;
 
 const Border = {
   RADIUS: 10,
@@ -52,11 +54,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-  },
-  centerContainer: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    width: windowWidth,
   },
   title: {
     textAlign: "center",
@@ -69,13 +67,6 @@ export const styles = StyleSheet.create({
     gap: 20,
     justifyContent: "center",
   },
-  // textInput: {
-  //   width: 300,
-  //   padding: 12,
-  //   borderWidth: 2,
-  //   borderRadius: 10,
-  //   borderColor: Colors.OFF_WHITE_DARK,
-  // },
   primaryBtn: {
     alignItems: "center",
     backgroundColor: Colors.PRIMARY,
@@ -102,8 +93,16 @@ export const styles = StyleSheet.create({
     borderRadius: Border.RADIUS,
     alignContent: `center`,
     alignItems: `center`,
-    width: `70%`,
+    padding: 12,
+    width: 300,
   },
+  // textInput: {
+  //   width: 300,
+  //   padding: 12,
+  //   borderWidth: 2,
+  //   borderRadius: 10,
+  //   borderColor: Colors.OFF_WHITE_DARK,
+  // },
   dropdown: {
     fontSize: Font.TEXT1,
     width: `70%`,
@@ -167,20 +166,20 @@ export const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   closeButton: {
-    position: 'absolute',
+    position: "absolute",
     bottom: "40%",
     padding: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     left: 0,
     right: 0,
   },
   scanMoreView: {
-    position: 'absolute',
+    position: "absolute",
     bottom: "20%",
     left: 0,
     right: 0,
-    alignItems: 'center',
+    alignItems: "center",
   },
   loadingScreen: {
     flex: 1,
@@ -190,7 +189,7 @@ export const styles = StyleSheet.create({
   },
   imagePickerContainer: {
     height: 200,
-    width: "70%", 
+    width: "70%",
     borderColor: Colors.GREY,
     borderWidth: Border.WIDTH,
     borderRadius: Border.RADIUS,
@@ -200,7 +199,7 @@ export const styles = StyleSheet.create({
   imagePreview: {
     flex: 1,
     resizeMode: "contain",
-    height: 200, 
+    height: 200,
     width: "100%",
   },
   createProductScreenButtonsContainer: {

@@ -45,54 +45,53 @@ export default function RegisterScreen() {
       onPress={() => {
         Keyboard.dismiss();
       }}>
-      <View style={styles.container}>
-        <KeyboardAvoidingView
-          style={styles.centerContainer}
-          behavior="padding"
-          keyboardVerticalOffset={50}>
-          <Text style={styles.title}>The Mini Mart Admin</Text>
-          <Image
-            style={{
-              width: 100,
-              height: 100,
-              marginBottom: 40,
-              marginTop: 10,
-            }}
-            source={blueBagImg}
-          />
+      <KeyboardAvoidingView
+        style={styles.centerContainer}
+        behavior="padding"
+        keyboardVerticalOffset={50}>
+        <Text style={styles.title}>The Mini Mart Admin</Text>
+        <Image
+          style={{
+            width: 100,
+            height: 100,
+            marginBottom: 40,
+            marginTop: 10,
+          }}
+          source={blueBagImg}
+        />
 
-          <View style={styles.loginContainer}>
-            <TextInput
-              style={styles.textInput}
-              placeholder="Username"
-              value={username}
-              onChangeText={setUsername}
-            />
-            <TextInput
-              style={styles.textInput}
-              placeholder="Password"
-              value={password}
-              onChangeText={setPassword}
-            />
-            <Button
-              btnStyle={styles.primaryBtn}
-              textStyle={styles.primaryBtnText}
-              title="Register"
-              onPress={() => {
-                registerHandler(username, password);
-              }}
-            />
-            <Button
-              btnStyle={[styles.tertiaryBtn, { marginTop: 20 }]}
-              textStyle={styles.tertiaryBtnText}
-              title="Have an account? Login Here"
-              onPress={() => {
-                navigator.goBack();
-              }}
-            />
-          </View>
-        </KeyboardAvoidingView>
-      </View>
+        <View style={styles.loginContainer}>
+          <TextInput
+            style={styles.textInput}
+            placeholder="Username"
+            value={username}
+            onChangeText={setUsername}
+          />
+          <TextInput
+            style={styles.textInput}
+            placeholder="Password"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+          />
+          <Button
+            btnStyle={styles.primaryBtn}
+            textStyle={styles.primaryBtnText}
+            title="Register"
+            onPress={() => {
+              registerHandler(username, password);
+            }}
+          />
+          <Button
+            btnStyle={[styles.tertiaryBtn, { marginTop: 20 }]}
+            textStyle={styles.tertiaryBtnText}
+            title="Have an account? Login Here"
+            onPress={() => {
+              navigator.goBack();
+            }}
+          />
+        </View>
+      </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
   );
 }
