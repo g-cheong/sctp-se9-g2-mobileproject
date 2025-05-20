@@ -146,4 +146,25 @@ export const styles = StyleSheet.create({
     right: 0,
     alignItems: "center",
   },
+  loadingScreen: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  imagePickerContainer: {
+    width: "70%", 
+    alignItems: "center",
+  },
+  imagePickerButton: {
+    width: "20%",
+  },
+  imagePreview: {
+    height: 200, 
+    width: "100%",
+  },
+  productListScreenCardImage: {
+    flex: 1,
+    resizeMode: "contain",
+  },
 });
