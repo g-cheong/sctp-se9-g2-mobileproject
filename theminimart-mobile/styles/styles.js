@@ -17,6 +17,7 @@ export const styles = StyleSheet.create({
   createProductScreenContainer: {
     justifyContent: `space-evenly`,
     alignItems: `center`,
+    flex: 1,
   },
   productListScreenContainer: {
     flexDirection: `row`,
@@ -93,8 +94,9 @@ export const styles = StyleSheet.create({
     borderRadius: Border.RADIUS,
     alignContent: `center`,
     alignItems: `center`,
-    padding: 12,
+    padding: 1,
     width: 300,
+    textAlignVertical: "center",
   },
   // textInput: {
   //   width: 300,

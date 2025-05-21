@@ -1,4 +1,4 @@
-import { ActivityIndicator, Alert, Button, Image, Text, TextInput, View } from "react-native";
+import { ActivityIndicator, Alert, Button, Image, Keyboard, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
 import { styles } from "../styles/styles";
 import { Dropdown } from "react-native-element-dropdown";
 import { useState } from "react";
@@ -70,36 +70,38 @@ export default function CreateProductScreen() {
   }
 
   return (
-    <View style={[styles.createProductScreenContainer, styles.container]}>
-      <TextInput style={styles.textInput} placeholder="Title" value={formFields.title} onChangeText={(text) => handleInputChange("title", text)}/>
-      <TextInput style={styles.textInput} placeholder="Price" value={formFields.price} onChangeText={(text) => handleInputChange("price", text)}/>
-      <TextInput style={styles.textInput} placeholder="Description" value={formFields.description} onChangeText={(text) => handleInputChange("description", text)}/>
-      <Dropdown 
-        style={styles.dropdown}
-        placeholderStyle={styles.dropdownPlaceholder}
-        selectedTextStyle={Font.TEXT1}
-        search
-        data={categories}
-        value={formFields.category}
-        labelField="label"
-        valueField="value"
-        placeholder="Select Item"
-        onChange={ item => {
-          handleInputChange("category", item.value);
-        }}
-      />
-      <View style={styles.imagePickerContainer}>
-        {formFields.productImage 
-          ? <Image source={{ uri: formFields.productImage}} style={styles.imagePreview}/> 
-          : <Text styles={styles.imagePreview}> No image selected </Text>
-        }
-      </View>
-      <View style={styles.createProductScreenButtonsContainer}>
-        <Button title="Submit" onPress={submitForm} />
-        <Button title="Pick image" onPress={pickImage} />
-        <Button title="Reset Form" onPress={resetForm} />
-      </View>
+    <TouchableWithoutFeedback style={styles.container} onPress={() => Keyboard.dismiss()}>
+      <View style={[styles.createProductScreenContainer]}>
+        <TextInput style={styles.textInput} placeholder="Title" value={formFields.title} onChangeText={(text) => handleInputChange("title", text)}/>
+        <TextInput style={styles.textInput} placeholder="Price" value={formFields.price} onChangeText={(text) => handleInputChange("price", text)}/>
+        <TextInput style={styles.textInput} placeholder="Description" value={formFields.description} onChangeText={(text) => handleInputChange("description", text)}/>
+        <Dropdown 
+          style={styles.dropdown}
+          placeholderStyle={styles.dropdownPlaceholder}
+          selectedTextStyle={Font.TEXT1}
+          search
+          data={categories}
+          value={formFields.category}
+          labelField="label"
+          valueField="value"
+          placeholder="Select Item"
+          onChange={ item => {
+            handleInputChange("category", item.value);
+          }}
+        />
+        <View style={styles.imagePickerContainer}>
+          {formFields.productImage 
+            ? <Image source={{ uri: formFields.productImage}} style={styles.imagePreview}/> 
+            : <Text styles={styles.imagePreview}> No image selected </Text>
+          }
+        </View>
+        <View style={styles.createProductScreenButtonsContainer}>
+          <Button title="Submit" onPress={submitForm} />
+          <Button title="Pick image" onPress={pickImage} />
+          <Button title="Reset Form" onPress={resetForm} />
+        </View>
 
-    </View>
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
