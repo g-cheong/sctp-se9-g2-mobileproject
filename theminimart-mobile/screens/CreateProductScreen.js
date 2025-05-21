@@ -91,8 +91,8 @@ export default function CreateProductScreen() {
           }}
         />
         <View style={styles.imagePickerContainer}>
-          {formFields.productImage 
-            ? <Image source={{ uri: formFields.productImage}} style={styles.imagePreview}/> 
+          {formFields.image 
+            ? <Image source={{ uri: formFields.image}} style={styles.imagePreview}/> 
             : <Text styles={styles.imagePreview}> No image selected </Text>
           }
         </View>

@@ -93,6 +93,7 @@ export const styles = StyleSheet.create({
     marginTop: 10,
     gap: 20,
     justifyContent: "center",
+    width: windowWidth*0.85,
   },
   primaryBtn: {
     alignItems: "center",
@@ -106,6 +107,7 @@ export const styles = StyleSheet.create({
   },
   tertiaryBtn: {
     alignItems: "center",
+    width: "100%",
   },
   tertiaryBtnText: {
     alignItems: "center",
