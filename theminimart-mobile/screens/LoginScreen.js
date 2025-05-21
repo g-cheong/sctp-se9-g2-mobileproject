@@ -26,53 +26,52 @@ export default function LoginScreen() {
       onPress={() => {
         Keyboard.dismiss();
       }}>
-      <View style={styles.container}>
-        <KeyboardAvoidingView
-          style={styles.centerContainer}
-          behavior="padding"
-          keyboardVerticalOffset={50}>
-          <Text style={styles.title}>The Mini Mart Admin</Text>
-          <Image
-            style={{
-              width: 100,
-              height: 100,
-              marginBottom: 40,
-              marginTop: 10,
-            }}
-            source={blueBagImg}
+      <KeyboardAvoidingView
+        style={styles.centerContainer}
+        behavior="padding"
+        keyboardVerticalOffset={50}>
+        <Text style={styles.title}>The Mini Mart Admin</Text>
+        <Image
+          style={{
+            width: 100,
+            height: 100,
+            marginBottom: 40,
+            marginTop: 10,
+          }}
+          source={blueBagImg}
+        />
+        <View style={styles.loginContainer}>
+          <TextInput
+            style={styles.textInput}
+            placeholder="Username"
+            value={username}
+            onChangeText={setUsername}
           />
-          <View style={styles.loginContainer}>
-            <TextInput
-              style={styles.textInput}
-              placeholder="Username"
-              value={username}
-              onChangeText={setUsername}
-            />
-            <TextInput
-              style={styles.textInput}
-              placeholder="Password"
-              value={password}
-              onChangeText={setPassword}
-            />
-            <Button
-              btnStyle={styles.primaryBtn}
-              textStyle={styles.primaryBtnText}
-              title="Login"
-              onPress={() => {
-                login(username, password);
-              }}
-            />
-            <Button
-              btnStyle={[styles.tertiaryBtn, { marginTop: 20 }]}
-              textStyle={styles.tertiaryBtnText}
-              title="Dont have an account? Register Here"
-              onPress={() => {
-                navigator.navigate("register");
-              }}
-            />
-          </View>
-        </KeyboardAvoidingView>
-      </View>
+          <TextInput
+            style={styles.textInput}
+            placeholder="Password"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+          />
+          <Button
+            btnStyle={styles.primaryBtn}
+            textStyle={styles.primaryBtnText}
+            title="Login"
+            onPress={() => {
+              login(username, password);
+            }}
+          />
+          <Button
+            btnStyle={[styles.tertiaryBtn, { marginTop: 20 }]}
+            textStyle={styles.tertiaryBtnText}
+            title="Dont have an account? Register Here"
+            onPress={() => {
+              navigator.navigate("register");
+            }}
+          />
+        </View>
+      </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
   );
 }

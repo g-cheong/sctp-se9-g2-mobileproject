@@ -1,8 +1,9 @@
 import { useState, useCallback } from "react";
-import { Button, View, Alert, StyleSheet } from "react-native";
+import { View, Alert, StyleSheet } from "react-native";
 import { styles } from "../styles/styles";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { CameraView, useCameraPermissions } from "expo-camera";
+import Button from "../components/Button";
 import { Platform } from "react-native";
  
 export default function ScanScreen() {
@@ -50,15 +51,19 @@ export default function ScanScreen() {
     };
 
   const handleBarCodeScanned = ({data}) => {
-    if (!scanned) {
-      if (!data) {
-        Alert.alert("No QR code found");
-        return;
-      }
-      setScanned(true);
-      setCameraVisible(false); // Close camera
+      if (!scanned) {
+        setScanned(true);
+        setTimeout(() => {
+        if (!data) {
+          setScanned(false);
+          Alert.alert("No QR code found.");
+          return;
+        }
+        setScanned(true);
+        setCameraVisible(false); // Close camera
 
-      navigator.navigate("productDetails", { id: data });
+        navigator.navigate("productDetails", { id: data });
+      }, 500);
     }
   };
 
@@ -75,7 +80,13 @@ export default function ScanScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.scanButtonView}>
-        <Button title="Scan QR Code" onPress={scanQRHandler} />
+        {/* <Button title="Scan QR Code" onPress={scanQRHandler} /> */}
+        <Button
+          btnStyle={styles.primaryBtn}
+          textStyle={styles.primaryBtnText}
+          title="Scan QR Code"
+          onPress={scanQRHandler}
+          />
       </View>
       {cameraVisible && (
         <View style={StyleSheet.absoluteFillObject}>
@@ -96,7 +107,13 @@ export default function ScanScreen() {
         </View>
         
           <View style={styles.closeButton}>
-            <Button title="Close Camera" onPress={() => setCameraVisible(false)} />
+            {/* <Button title="Close Camera" onPress={() => setCameraVisible(false)} /> */}
+          <Button
+            btnStyle={styles.primaryBtn}
+            textStyle={styles.primaryBtnText}
+            title="Close Camera"
+            onPress={() => setCameraVisible(false)}
+          />
           </View>
         </View>
       )}

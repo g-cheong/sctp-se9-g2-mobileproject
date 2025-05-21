@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export const API_URL = "https://677be8e220824100c07b3800.mockapi.io/";
 export const API_PRODUCTS_URL = API_URL + "/products";
@@ -10,23 +10,47 @@ export const useProducts = () => {
     const [loading, setLoading] = useState(true);
     const apiUrl = API_PRODUCTS_URL;
     
+    const fetchData = useCallback(async () => {
+        try {
+            setLoading(true);
+            const response = await axios.get(apiUrl);
+            console.log("API response:", response.data);
+            setData(response.data);
+        } catch (err) {
+            console.log(err);
+            setError(err);
+        } finally {
+            setLoading(false);  
+        }
+    }, [apiUrl]);
+
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                setLoading(true);
-                const response = await axios.get(apiUrl);
-                console.log("API response:", response.data);
-                setData(response.data);
-            } catch (err) {
-                console.log(err);
-                setError(err);
-            } finally {
-                setLoading(false);  
-            }
-        };
         fetchData();
     }, []);
-    return {data, setData, loading, error};
+
+    return {data, setData, loading, error, refetch: fetchData};
+};
+
+export const useCreateProduct = () => {
+    const [isCreating, setIsCreating] = useState(false);
+    const [createError, setCreateError] = useState(null);
+    const [createProductData, setCreatedProductData] = useState(null);
+
+    const createProduct = useCallback(async (productData) => {
+        setIsCreating(true);
+        setCreateError(null);
+        setCreatedProductData(null);
+        try {
+            const response = await axios.post(API_PRODUCTS_URL, productData);
+            setCreatedProductData(response.data);
+            return response.data;
+        } catch (err) {
+            setCreateError(err);
+        } finally {
+            setIsCreating(false);
+        }
+    }, []);
+    return {createProduct, isCreating, createError, setCreatedProductData};
 };
 
 export const useCategories = () => {

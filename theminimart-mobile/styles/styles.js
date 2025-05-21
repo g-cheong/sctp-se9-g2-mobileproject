@@ -2,6 +2,8 @@ import { StyleSheet, Dimensions } from "react-native";
 import { Font } from "./font";
 import { Colors } from "./colors";
 
+const windowWidth = Dimensions.get("window").width;
+
 const Border = {
   RADIUS: 10,
   WIDTH: 1,
@@ -18,29 +20,53 @@ export const styles = StyleSheet.create({
   createProductScreenContainer: {
     justifyContent: `space-evenly`,
     alignItems: `center`,
+    flex: 1,
   },
   productListScreenContainer: {
     flexDirection: `row`,
     flexGrow: 1,
-    flexWrap: `wrap`,
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: `center`,
+    alignContent: "center",
     borderColor: Colors.BLACK,
     borderWidth: Border.WIDTH,
     borderRadius: Border.RADIUS,
     marginVertical: 5,
-    width: `95%`,
+    width: windowWidth * 0.95,
+  },
+  productListScreenCardLeftContainer: {
+    width: "30%", 
+    justifyContent:"space-around", 
+    flexDirection: "column",
+  },
+  productListScreenCardRightContainer: {
+    justifyContent: "space-around", 
+    flexDirection: "column", 
+    flexWrap: "wrap", 
+    width: "70%", 
   },
   productListScreenCardImage: {
     flex: 1,
+    margin: "5%",
     resizeMode: "contain",
+    aspectRatio: 0.75,
+  },
+  productListScreenCardButtonContainer: {
+    backgroundColor: Colors.PRIMARY,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: Border.RADIUS,
+    margin: "5%",
+    height: 35,
   },
   productListScreenRow: {
+    justifyContent: "center",
+    alignContent: "center",
     alignItems: "center",
     flexDirection: "row",
     flexWrap: "nowrap",
     width: "100%",
-    paddingVertical: 5,
+    paddingVertical: "2%",
   },
   productListScreenHeaderText: {
     fontWeight: Font.BOLD,
@@ -55,11 +81,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-  },
-  centerContainer: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    width: windowWidth,
   },
   title: {
     textAlign: "center",
@@ -72,13 +94,6 @@ export const styles = StyleSheet.create({
     gap: 20,
     justifyContent: "center",
   },
-  // textInput: {
-  //   width: 300,
-  //   padding: 12,
-  //   borderWidth: 2,
-  //   borderRadius: 10,
-  //   borderColor: Colors.OFF_WHITE_DARK,
-  // },
   primaryBtn: {
     alignItems: "center",
     backgroundColor: Colors.PRIMARY,
@@ -105,11 +120,20 @@ export const styles = StyleSheet.create({
     borderRadius: Border.RADIUS,
     alignContent: `center`,
     alignItems: `center`,
-    width: `70%`,
+    padding: 1,
+    width: "85%",
+    textAlignVertical: "center",
   },
+  // textInput: {
+  //   width: 300,
+  //   padding: 12,
+  //   borderWidth: 2,
+  //   borderRadius: 10,
+  //   borderColor: Colors.OFF_WHITE_DARK,
+  // },
   dropdown: {
     fontSize: Font.TEXT1,
-    width: `70%`,
+    width: `85%`,
     height: 50,
     borderWidth: Border.WIDTH,
     borderRadius: Border.RADIUS,
@@ -174,8 +198,8 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     bottom: '5%',
     padding: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     left: 0,
     right: 0,
   },
@@ -196,7 +220,7 @@ export const styles = StyleSheet.create({
   },
   imagePickerContainer: {
     height: 200,
-    width: "70%", 
+    width: "85%",
     borderColor: Colors.GREY,
     borderWidth: Border.WIDTH,
     borderRadius: Border.RADIUS,
@@ -206,14 +230,72 @@ export const styles = StyleSheet.create({
   imagePreview: {
     flex: 1,
     resizeMode: "contain",
-    height: 200, 
+    height: 200,
     width: "100%",
   },
   createProductScreenButtonsContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     height: 50,
-    width: "70%",
+    width: windowWidth*0.85,
+  },
+  createProductScreenButtonContainer: {
+    backgroundColor: Colors.PRIMARY,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: Border.RADIUS,
+    margin: "5%",
+    height: 35,
+  },
+  productDetailsImageView: {
+    width: "98%",
+    height: "20%",
+    borderWidth: 1,
+    borderColor: Colors.OFF_WHITE_DARKER,
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    margin: 4,
+    padding: 1,
+  },
+  productDetailsImage: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "contain",
+  },
+  scanButtonView: {
+    marginTop: '5%',
+    padding: 10,
+  },
+  overlayContainer: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  overlayTop: {
+    width: "100%",
+    height: (height - boxSize) / 2,
+    backgroundColor: Colors.BACKGROUND,
+  },
+  overlayMiddle: {
+    flexDirection: "row",
+  },
+  overlaySide: {
+    width: (width - boxSize) / 2,
+    height: boxSize,
+    backgroundColor: Colors.BACKGROUND,
+  },
+  scannerBox: {
+    width: boxSize,
+    height: boxSize,
+    borderColor: Colors.SECONDARY,
+    borderWidth: 3,
+    backgroundColor: "transparent",
+  },
+  overlayBottom: {
+    width: "100%",
+    height: (height - boxSize) / 2,
+    backgroundColor: Colors.BACKGROUND,
   },
   productDetailsImageView: {
     width: "98%",
