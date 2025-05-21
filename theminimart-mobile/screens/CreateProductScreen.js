@@ -1,4 +1,5 @@
-import { ActivityIndicator, Alert, Button, Image, Keyboard, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
+import { ActivityIndicator, Alert, Image, Keyboard, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
+import { Button } from "react-native-paper";
 import { styles } from "../styles/styles";
 import { Dropdown } from "react-native-element-dropdown";
 import { useState } from "react";
@@ -96,9 +97,27 @@ export default function CreateProductScreen() {
           }
         </View>
         <View style={styles.createProductScreenButtonsContainer}>
-          <Button title="Submit" onPress={submitForm} />
-          <Button title="Pick image" onPress={pickImage} />
-          <Button title="Reset Form" onPress={resetForm} />
+          <View style={styles.createProductScreenButtonContainer}>
+            <Button 
+              textColor={Colors.WHITE}
+              labelStyle={{fontSize:Font.TEXT3, fontWeight: Font.BOLD}}
+              onPress={submitForm}
+              > Submit </Button>
+          </View>
+          <View style={styles.createProductScreenButtonContainer}>
+            <Button 
+              textColor={Colors.WHITE}
+              labelStyle={{fontSize:Font.TEXT3, fontWeight: Font.BOLD}}
+              onPress={pickImage}
+              > Pick Image </Button>
+          </View>
+          <View style={styles.createProductScreenButtonContainer}>
+            <Button 
+              textColor={Colors.WHITE}
+              labelStyle={{fontSize:Font.TEXT3, fontWeight: Font.BOLD}}
+              onPress={resetForm}
+              > Reset Form </Button>
+          </View>
         </View>
 
       </View>

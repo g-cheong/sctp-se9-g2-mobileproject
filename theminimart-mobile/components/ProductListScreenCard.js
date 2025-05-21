@@ -1,5 +1,8 @@
-import { Button, Image, Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import { styles } from "../styles/styles";
+import { Button } from "react-native-paper";
+import { Colors } from "../styles/colors";
+import { Font } from "../styles/font";
 
 export default function ProductListScreenCard({data, navigation}) {
     if(!data) {
@@ -7,28 +10,33 @@ export default function ProductListScreenCard({data, navigation}) {
     }
 
     return(
-        <View style={styles.productListScreenContainer}>
-            <View style={{width: "30%", aspectRatio: 1, padding: 5}}>
-                <Image style={styles.productListScreenCardImage} source={{uri: data.image}}/>
-                <Button
-                    title="Go to Detail"
-                    onPress={() => {
-                    navigation.navigate("productDetails", {id:data.id});
-                    }}
-                />
-            </View>
-            <View style={{justifyContent: "space-evenly", flexDirection: "column", flexWrap: "wrap", width: "70%", gap: 1}}>
-                <View style={styles.productListScreenRow}>
-                    <Text style={styles.productListScreenHeaderText}> Title: </Text>
-                    <Text style={styles.productListScreenText}> {data.title} </Text>
+        <View style={{flexDirection: 'column', justifyContent: "center"}}>
+            <View style={styles.productListScreenContainer}>
+                <View style={styles.productListScreenCardLeftContainer}>
+                    <Image style={styles.productListScreenCardImage} source={{uri: data.image}}/>
+                    <View style={styles.productListScreenCardButtonContainer}>
+                        <Button 
+                            textColor={Colors.WHITE}
+                            labelStyle={{fontSize:Font.TEXT3, fontWeight: Font.BOLD}}
+                            onPress={() => {
+                                navigation.navigate("productDetails", {id:data.id});
+                            }}
+                            > Details </Button>
+                    </View>
                 </View>
-                <View style={styles.productListScreenRow}>
-                    <Text style={styles.productListScreenHeaderText}> Price:</Text>
-                    <Text style={styles.productListScreenText}> {"$" + data.price}</Text>
-                </View>
-                <View style={styles.productListScreenRow}>
-                    <Text style={styles.productListScreenHeaderText}> Category: </Text>
-                    <Text style={styles.productListScreenText}> {data.category} </Text>
+                <View style={styles.productListScreenCardRightContainer}>
+                    <View style={styles.productListScreenRow}>
+                        <Text style={styles.productListScreenHeaderText}> Title: </Text>
+                        <Text style={styles.productListScreenText}> {data.title} </Text>
+                    </View>
+                    <View style={styles.productListScreenRow}>
+                        <Text style={styles.productListScreenHeaderText}> Price:</Text>
+                        <Text style={styles.productListScreenText}> {"$" + data.price}</Text>
+                    </View>
+                    <View style={styles.productListScreenRow}>
+                        <Text style={styles.productListScreenHeaderText}> Category: </Text>
+                        <Text style={styles.productListScreenText}> {data.category} </Text>
+                    </View>
                 </View>
             </View>
         </View>
