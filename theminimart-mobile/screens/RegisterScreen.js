@@ -62,13 +62,13 @@ export default function RegisterScreen() {
 
         <View style={styles.loginContainer}>
           <TextInput
-            style={styles.textInput}
+            style={styles.authTextInput}
             placeholder="Username"
             value={username}
             onChangeText={setUsername}
           />
           <TextInput
-            style={styles.textInput}
+            style={styles.authTextInput}
             placeholder="Password"
             value={password}
             onChangeText={setPassword}

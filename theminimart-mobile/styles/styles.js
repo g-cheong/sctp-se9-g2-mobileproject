@@ -35,15 +35,15 @@ export const styles = StyleSheet.create({
     width: windowWidth * 0.95,
   },
   productListScreenCardLeftContainer: {
-    width: "30%", 
-    justifyContent:"space-around", 
+    width: "30%",
+    justifyContent: "space-around",
     flexDirection: "column",
   },
   productListScreenCardRightContainer: {
-    justifyContent: "space-around", 
-    flexDirection: "column", 
-    flexWrap: "wrap", 
-    width: "70%", 
+    justifyContent: "space-around",
+    flexDirection: "column",
+    flexWrap: "wrap",
+    width: "70%",
   },
   productListScreenCardImage: {
     flex: 1,
@@ -93,7 +93,7 @@ export const styles = StyleSheet.create({
     marginTop: 10,
     gap: 20,
     justifyContent: "center",
-    width: windowWidth*0.85,
+    width: windowWidth * 0.85,
   },
   primaryBtn: {
     alignItems: "center",
@@ -103,7 +103,8 @@ export const styles = StyleSheet.create({
   primaryBtnText: {
     color: Colors.WHITE,
     padding: 10,
-    fontSize: 18,
+    fontWeight: Font.BOLD,
+    fontSize: Font.TEXT3,
   },
   tertiaryBtn: {
     alignItems: "center",
@@ -112,6 +113,19 @@ export const styles = StyleSheet.create({
   tertiaryBtnText: {
     alignItems: "center",
     color: Colors.GREY,
+    fontWeight: Font.BOLD,
+  },
+  authTextInput: {
+    height: 50,
+    fontSize: Font.TEXT1,
+    color: Colors.GREY,
+    borderColor: Colors.BLACK,
+    borderWidth: Border.WIDTH,
+    borderRadius: Border.RADIUS,
+    alignContent: `center`,
+    alignItems: `center`,
+    padding: 1,
+    textAlignVertical: "center",
   },
   textInput: {
     height: 50,
@@ -197,8 +211,8 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
   closeButton: {
-    position: 'absolute',
-    bottom: '5%',
+    position: "absolute",
+    bottom: "5%",
     padding: 10,
     alignItems: "center",
     justifyContent: "center",
@@ -206,12 +220,12 @@ export const styles = StyleSheet.create({
     right: 0,
   },
   scanMoreView: {
-    position: 'absolute',
+    position: "absolute",
     bottom: "15%",
     left: 0,
     right: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     padding: 10,
   },
   loadingScreen: {
@@ -239,7 +253,7 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     height: 50,
-    width: windowWidth*0.85,
+    width: windowWidth * 0.85,
   },
   createProductScreenButtonContainer: {
     backgroundColor: Colors.PRIMARY,
@@ -266,7 +280,7 @@ export const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   scanButtonView: {
-    marginTop: '5%',
+    marginTop: "5%",
     padding: 10,
   },
   overlayContainer: {
@@ -316,7 +330,7 @@ export const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   scanButtonView: {
-    marginTop: '5%',
+    marginTop: "5%",
     padding: 10,
   },
   overlayContainer: {
