@@ -1,29 +1,27 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Text, View, Alert, ScrollView } from "react-native";
+import { Text, View, Alert, ScrollView, ActivityIndicator, Image } from "react-native";
 import { styles } from "../styles/styles";
 import { useRoute } from "@react-navigation/native";
 import { API_URL } from "../constants/api";
+import { Colors } from "../styles/colors";
 import QRCode from 'react-native-qrcode-svg';
-
-// const API_URL = "https://677be8e220824100c07b3800.mockapi.io/";
 
 export default function ProductDetailsScreen() {
   const route = useRoute();
+  const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState([]);
   const productId = "/products/" + route.params.id;
-  const qrLogo = require("../assets/bluebag.png");
-  //const productId = "/products/" + 20;
+  const appLogo = require("../assets/bluebag.png");
 
   const getProduct = async () => {
     try {
-      //setIsLoading(true);
+      setIsLoading(true);
       const response = await axios.get(API_URL + productId);
       const singleProduct = response.data;
     
       if (singleProduct !== null && singleProduct !== undefined) {
         setProducts(singleProduct);
-        //setIsLoaded(true);
       }
     } catch (error) {
       if (error.response && error.response.status === 404) {
@@ -32,9 +30,8 @@ export default function ProductDetailsScreen() {
       } else {
         Alert.alert("Error", "Failed to fetch product details.");
       }
-      //console.error(error);
     } finally {
-      //setIsLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -42,25 +39,50 @@ export default function ProductDetailsScreen() {
     getProduct();
   }, [route.params.id]);
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.productDetailsTitle}>Product Title: {products.title}</Text>
-      <Text style={styles.productDetailsCategory}>Product Category: {products.category}</Text>
-      <View style={styles.productDetailsDescriptionView}>
-      <ScrollView style={{ flexGrow: 0 }}> 
-        <Text style={styles.productDetailsDescriptionTitle}>Product Description:</Text>
-        <Text style={styles.productDetailsDescription}>{products.description}</Text>
-      </ScrollView>
+  if (isLoading) {
+    return (
+      <View style={styles.loadingScreen}>
+        <ActivityIndicator size="large" color={Colors.PRIMARY} />
+        <Text>Loading Product</Text>
       </View>
+    );
+  }
+
+  return (
+    <ScrollView contentContainerStyle={{flexGrow: 0, height: "90%"}}>
+    <View style={styles.container}>
+        <View style={styles.productDetailsImageView}>
+          {products.image && products.image != "" && (
+            <Image
+              source={{ uri: products.image }}
+              style={styles.productDetailsImage}
+            />
+          )}
+          {products.image === null || products.image == "" && (
+            <Image
+              source={appLogo}
+              style={styles.productDetailsImage}
+            />
+          )}
+        </View>
+        <Text style={styles.productDetailsTitle}>Product Title: {products.title}</Text>
+        <Text style={styles.productDetailsCategory}>Product Category: {products.category}</Text>
+        <View style={styles.productDetailsDescriptionView}>
+        <ScrollView style={{ flexGrow: 0 }}> 
+          <Text style={styles.productDetailsDescriptionTitle}>Product Description:</Text>
+          <Text style={styles.productDetailsDescription}>{products.description}</Text>
+        </ScrollView>
+        </View>
+     
       <Text style={styles.productDetailsPrice}>Product Price: {products.price}</Text>
-      <View style={{ justifyContent: "center" }}>
+      <View style={{ justifyContent: "flex-start" }}>
        { products!=null && products!=undefined &&  products.id > 0 &&
           <View style={styles.productDetailsQRCodeView}>
               <QRCode
                 value={products.id}
                 color="black"
                 backgroundColor="white"
-                logo={qrLogo}
+                logo={appLogo}
                 logoBackgroundColor="transparent"
                 logoSize={30}
                 ecl="H"
@@ -68,7 +90,10 @@ export default function ProductDetailsScreen() {
               /> 
             </View> 
         }
-      </View>
+        </View>
     </View>
+  </ScrollView>
+  
+  
   );
 }

@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { Button, Text, View, Alert, StyleSheet } from "react-native";
+import { Button, View, Alert, StyleSheet } from "react-native";
 import { styles } from "../styles/styles";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { CameraView, useCameraPermissions } from "expo-camera";
@@ -10,6 +10,7 @@ export default function ScanScreen() {
   const [cameraPermission, requestCameraPermission] = useCameraPermissions();
   const [scanned, setScanned] = useState(false);
   const [cameraVisible, setCameraVisible] = useState(false);
+  
 
   const checkCameraPermission = async () => {
     if (Platform.OS === "android") return true;
@@ -73,13 +74,26 @@ export default function ScanScreen() {
 
   return (
     <View style={styles.container}>
-      <Button title="Scan QR Code" onPress={scanQRHandler} />
+      <View style={styles.scanButtonView}>
+        <Button title="Scan QR Code" onPress={scanQRHandler} />
+      </View>
       {cameraVisible && (
         <View style={StyleSheet.absoluteFillObject}>
             <CameraView style={StyleSheet.absoluteFillObject}
             facing="back"
             onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}>
             </CameraView>
+
+            {/* Overlay */}
+        <View pointerEvents="none" style={styles.overlayContainer}>
+          <View style={styles.overlayTop} />
+          <View style={styles.overlayMiddle}>
+              <View style={styles.overlaySide} />
+              <View style={styles.scannerBox} />
+              <View style={styles.overlaySide} />
+          </View>
+          <View style={styles.overlayBottom} />
+        </View>
         
           <View style={styles.closeButton}>
             <Button title="Close Camera" onPress={() => setCameraVisible(false)} />
@@ -87,12 +101,11 @@ export default function ScanScreen() {
         </View>
       )}
       
-       {scanned && cameraVisible && (
+       {/* {scanned && cameraVisible && (
         <View style={styles.scanMoreView}>
           <Button title="Scan Again" onPress={() => setScanned(false)} />
         </View>
-
-      )}
+      )} */}
     </View>
   );
 }

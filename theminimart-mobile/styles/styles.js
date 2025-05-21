@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 import { Font } from "./font";
 import { Colors } from "./colors";
 
@@ -6,6 +6,9 @@ const Border = {
   RADIUS: 10,
   WIDTH: 1,
 };
+
+const { width, height } = Dimensions.get("window");
+const boxSize = 300;
 
 export const styles = StyleSheet.create({
   container: {
@@ -120,22 +123,22 @@ export const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: Font.TEXT2,
     fontWeight: 700,
-    padding: 10,
+    padding: 5,
   },
   productDetailsCategory: {
     textAlign: "center",
-    fontSize: 15,
+    fontSize: Font.TEXT2,
     fontWeight: 600,
     padding: 5,
   },
   productDetailsDescriptionTitle: {
     textAlign: "flex-start",
-    fontSize: 13,
+    fontSize: Font.TEXT3,
     fontWeight: 600,
   },
   productDetailsDescription: {
     textAlign: "flex-start",
-    fontSize: 13,
+    fontSize: Font.TEXT3,
     fontWeight: 400,
   },
   productDetailsPrice: {
@@ -146,29 +149,30 @@ export const styles = StyleSheet.create({
   },
   productDetailsDescriptionView: {
     padding: 10,
-    margin: 10,
+    margin: 4,
     borderWidth: 1,
     borderColor: Colors.OFF_WHITE_DARKER,
     borderRadius: 25,
     backgroundColor: Colors.BACKGROUND,
     alignItems: "stretch",
-    width: "95%",
+    width: "96%",
     maxHeight: "22%",
+    justifyContent: "center",
   },
   productDetailsQRCodeView: {
     width: 150,
     height: 150,
     padding: 8,
-    marginTop: "5%",
+    marginTop: "3%",
     borderWidth: 1,
     borderColor: Colors.OFF_WHITE_DARKER,
     borderRadius: 20,
     alignItems: "center",
-    justifyContent: "flex-start",
+    justifyContent: "center",
   },
   closeButton: {
     position: 'absolute',
-    bottom: "40%",
+    bottom: '5%',
     padding: 10,
     alignItems: 'center',
     justifyContent: 'center',
@@ -177,10 +181,12 @@ export const styles = StyleSheet.create({
   },
   scanMoreView: {
     position: 'absolute',
-    bottom: "20%",
+    bottom: "15%",
     left: 0,
     right: 0,
     alignItems: 'center',
+    justifyContent: 'center',
+    padding: 10,
   },
   loadingScreen: {
     flex: 1,
@@ -208,5 +214,55 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
     height: 50,
     width: "70%",
+  },
+  productDetailsImageView: {
+    width: "98%",
+    height: "20%",
+    borderWidth: 1,
+    borderColor: Colors.OFF_WHITE_DARKER,
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    margin: 4,
+    padding: 1,
+  },
+  productDetailsImage: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "contain",
+  },
+  scanButtonView: {
+    marginTop: '5%',
+    padding: 10,
+  },
+  overlayContainer: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  overlayTop: {
+    width: "100%",
+    height: (height - boxSize) / 2,
+    backgroundColor: Colors.BACKGROUND,
+  },
+  overlayMiddle: {
+    flexDirection: "row",
+  },
+  overlaySide: {
+    width: (width - boxSize) / 2,
+    height: boxSize,
+    backgroundColor: Colors.BACKGROUND,
+  },
+  scannerBox: {
+    width: boxSize,
+    height: boxSize,
+    borderColor: Colors.SECONDARY,
+    borderWidth: 3,
+    backgroundColor: "transparent",
+  },
+  overlayBottom: {
+    width: "100%",
+    height: (height - boxSize) / 2,
+    backgroundColor: Colors.BACKGROUND,
   },
 });
