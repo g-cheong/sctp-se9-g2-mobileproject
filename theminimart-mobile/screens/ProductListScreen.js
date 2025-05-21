@@ -17,21 +17,26 @@ import { useCallback, useState } from "react";
 
 export default function ProductListScreen() {
   const navigation = useNavigation();
-  const {data, loading, error} = useProducts();
-  const [isRefreshing, setIsRefreshing] = useState(true);
+  const {data, loading, error, refetch} = useProducts();
+  const [isRefreshing, setIsRefreshing] = useState(false);
   
   useFocusEffect(
-    useCallback(() => {}, [data])
+    useCallback(() => {
+      setIsRefreshing(true);
+      refetch().finally(() => {
+        setIsRefreshing(false);
+      });
+    }, [refetch])
   );
 
   const handleRefresh = useCallback(() => {
     setIsRefreshing(true);
-    setTimeout(() => {
+    refetch().finally(() => {
       setIsRefreshing(false);
-    }, 500);
-  }, []);
+    });
+  }, [refetch]);
 
-  if (loading) {
+  if (loading && !isRefreshing) {
     return (
         <View style={styles.loadingScreen}>
           <ActivityIndicator size="large" color={Colors.PRIMARY} />
