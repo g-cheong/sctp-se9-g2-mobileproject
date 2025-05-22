@@ -73,9 +73,36 @@ export default function CreateProductScreen() {
   return (
     <TouchableWithoutFeedback style={styles.container} onPress={() => Keyboard.dismiss()}>
       <View style={[styles.createProductScreenContainer]}>
-        <TextInput style={styles.textInput} placeholder="Title" value={formFields.title} onChangeText={(text) => handleInputChange("title", text)}/>
-        <TextInput style={styles.textInput} placeholder="Price" value={formFields.price} onChangeText={(text) => handleInputChange("price", text)}/>
-        <TextInput style={styles.textInput} placeholder="Description" value={formFields.description} onChangeText={(text) => handleInputChange("description", text)}/>
+        <TextInput 
+        style={styles.textInput} 
+        placeholder="Title" 
+        value={formFields.title}
+        onChangeText={
+          (text) => handleInputChange("title", text)
+          }
+        />
+        <TextInput 
+        style={styles.textInput} placeholder="Price" 
+        value={formFields.price}
+        keyboardType="numeric"
+        onChangeText={
+          (text) => {
+            if(isNaN(text)) {
+              text.replace(/[^0-9]/g, '');
+              return;
+            }; 
+            handleInputChange("price", text)
+          }
+          }
+        />
+        <TextInput 
+          style={styles.textInput} 
+          placeholder="Description" 
+          value={formFields.description}
+          onChangeText={
+            (text) => handleInputChange("description", text)
+            }
+        />
         <Dropdown 
           style={styles.dropdown}
           placeholderStyle={styles.dropdownPlaceholder}
