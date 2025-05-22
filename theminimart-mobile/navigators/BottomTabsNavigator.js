@@ -35,7 +35,7 @@ export default function BottomTabsNavigator() {
         component={ProductListNavigator}
         options={{
           title: "Product List",
-          headerShown: false,
+          // headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="list-outline" size={size} color={color} />
           ),
@@ -46,7 +46,7 @@ export default function BottomTabsNavigator() {
         component={ScanNavigator}
         options={{
           title: "Scan",
-          headerShown: false,
+          // headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="qr-code-outline" size={size} color={color} />
           ),

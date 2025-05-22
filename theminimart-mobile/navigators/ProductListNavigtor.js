@@ -8,14 +8,9 @@ const Stack = createNativeStackNavigator();
 export default function ProductListNavigator() {
   // contains the ProductDetailsScreen and BottomTabsNavigator(CreateProductScreen,ProductListScreen,ScanScreen)
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerStyle: { backgroundColor: Colors.PRIMARY },
-        headerTintColor: Colors.WHITE,
-        contentStyle: { backgroundColor: Colors.OFF_WHITE_LIGHT },
-      }}>
-      <Stack.Screen name="productListScreen" component={ProductListScreen} options={{ title: "Products List"}} />
-      <Stack.Screen name="productDetails" component={ProductDetailsScreen} options={{ title: "Product Details" }} />
+    <Stack.Navigator>
+      <Stack.Screen name="productListScreen" component={ProductListScreen} options={{ title: "Products List", headerShown: false}} />
+      <Stack.Screen name="productDetails" component={ProductDetailsScreen} options={{ title: "Product Details", headerShown: false }} />
     </Stack.Navigator>
   );
 }
