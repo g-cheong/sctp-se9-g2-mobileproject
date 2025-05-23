@@ -13,6 +13,7 @@ export default function ProductDetailsScreen() {
   const [products, setProducts] = useState([]);
   const productId = "/products/" + route.params.id;
   const appLogo = require("../assets/bluebag.png");
+  const [imageError, setImageError] = useState(false);
 
   const getProduct = async () => {
     try {
@@ -49,29 +50,24 @@ export default function ProductDetailsScreen() {
   }
 
   return (
-    <ScrollView contentContainerStyle={{flexGrow: 0, height: "90%"}}>
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={{flexGrow: 1}}>
+    <View style={styles.productDetailsScreenContainer}>
         <View style={styles.productDetailsImageView}>
-          {products.image && products.image != "" && (
+          {products.image && products.image != "" && !imageError ? (
             <Image
               source={{ uri: products.image }}
               style={styles.productDetailsImage}
+              onError={() => setImageError(true)} 
             />
-          )}
-          {products.image === null || products.image == "" && (
-            <Image
-              source={appLogo}
-              style={styles.productDetailsImage}
-            />
+          ): (
+            <Text style={styles.productDetailsTitle}>Image not available</Text>
           )}
         </View>
         <Text style={styles.productDetailsTitle}>Product Title: {products.title}</Text>
         <Text style={styles.productDetailsCategory}>Product Category: {products.category}</Text>
         <View style={styles.productDetailsDescriptionView}>
-        <ScrollView style={{ flexGrow: 0 }}> 
           <Text style={styles.productDetailsDescriptionTitle}>Product Description:</Text>
-          <Text style={styles.productDetailsDescription}>{products.description}</Text>
-        </ScrollView>
+          <Text style={styles.productDetailsDescription}>{products.description}</Text>        
         </View>
      
       <Text style={styles.productDetailsPrice}>Product Price: {products.price}</Text>
@@ -93,7 +89,6 @@ export default function ProductDetailsScreen() {
         </View>
     </View>
   </ScrollView>
-  
   
   );
 }

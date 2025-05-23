@@ -10,13 +10,19 @@ const Border = {
 };
 
 const { width, height } = Dimensions.get("window");
-const boxSize = 300;
+const boxSize = 300; 
+const scale = Math.max(Math.min(width / 375, 1.2), 0.85);
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: `center`,
     justifyContent: "center",
+  },
+  productDetailsScreenContainer: {
+    flex: 1,
+    alignItems: `center`,
+    justifyContent: 'flex-start',
   },
   createProductScreenContainer: {
     justifyContent: `space-evenly`,
@@ -162,29 +168,29 @@ export const styles = StyleSheet.create({
   },
   productDetailsTitle: {
     textAlign: "center",
-    fontSize: Font.TEXT2,
+    fontSize: Font.TEXT2 * scale,
     fontWeight: 700,
     padding: 5,
   },
   productDetailsCategory: {
     textAlign: "center",
-    fontSize: Font.TEXT2,
+    fontSize: Font.TEXT2 * scale,
     fontWeight: 600,
     padding: 5,
   },
   productDetailsDescriptionTitle: {
     textAlign: "flex-start",
-    fontSize: Font.TEXT3,
+    fontSize: Font.TEXT3 * scale,
     fontWeight: 600,
   },
   productDetailsDescription: {
     textAlign: "flex-start",
-    fontSize: Font.TEXT3,
+    fontSize: Font.TEXT3 * scale,
     fontWeight: 400,
   },
   productDetailsPrice: {
     textAlign: "center",
-    fontSize: Font.TEXT2,
+    fontSize: Font.TEXT2 * scale,
     fontWeight: 600,
     padding: 10,
   },
@@ -196,15 +202,14 @@ export const styles = StyleSheet.create({
     borderRadius: 25,
     backgroundColor: Colors.BACKGROUND,
     alignItems: "stretch",
-    width: "96%",
-    maxHeight: "22%",
-    justifyContent: "center",
+    width: width * 0.96,
   },
   productDetailsQRCodeView: {
     width: 150,
     height: 150,
     padding: 8,
     marginTop: "3%",
+    marginBottom: "3%",
     borderWidth: 1,
     borderColor: Colors.OFF_WHITE_DARKER,
     borderRadius: 20,
@@ -219,15 +224,6 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     left: 0,
     right: 0,
-  },
-  scanMoreView: {
-    position: "absolute",
-    bottom: "15%",
-    left: 0,
-    right: 0,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 10,
   },
   loadingScreen: {
     flex: 1,
@@ -265,8 +261,8 @@ export const styles = StyleSheet.create({
     height: 35,
   },
   productDetailsImageView: {
-    width: "98%",
-    height: "20%",
+    width: width * 0.98,
+    height: 200 * scale,
     borderWidth: 1,
     borderColor: Colors.OFF_WHITE_DARKER,
     borderRadius: 20,
@@ -303,57 +299,7 @@ export const styles = StyleSheet.create({
     backgroundColor: Colors.BACKGROUND,
   },
   scannerBox: {
-    width: boxSize,
-    height: boxSize,
-    borderColor: Colors.SECONDARY,
-    borderWidth: 3,
-    backgroundColor: "transparent",
-  },
-  overlayBottom: {
-    width: "100%",
-    height: (height - boxSize) / 2,
-    backgroundColor: Colors.BACKGROUND,
-  },
-  productDetailsImageView: {
-    width: "98%",
-    height: "20%",
-    borderWidth: 1,
-    borderColor: Colors.OFF_WHITE_DARKER,
-    borderRadius: 20,
-    alignItems: "center",
-    justifyContent: "center",
-    margin: 4,
-    padding: 1,
-  },
-  productDetailsImage: {
-    width: "100%",
-    height: "100%",
-    resizeMode: "contain",
-  },
-  scanButtonView: {
-    marginTop: "5%",
-    padding: 10,
-  },
-  overlayContainer: {
-    ...StyleSheet.absoluteFillObject,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  overlayTop: {
-    width: "100%",
-    height: (height - boxSize) / 2,
-    backgroundColor: Colors.BACKGROUND,
-  },
-  overlayMiddle: {
-    flexDirection: "row",
-  },
-  overlaySide: {
-    width: (width - boxSize) / 2,
-    height: boxSize,
-    backgroundColor: Colors.BACKGROUND,
-  },
-  scannerBox: {
-    width: boxSize,
+    width: width - (width - boxSize) / 2,
     height: boxSize,
     borderColor: Colors.SECONDARY,
     borderWidth: 3,

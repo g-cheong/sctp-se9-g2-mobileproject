@@ -12,7 +12,6 @@ export default function ScanScreen() {
   const [scanned, setScanned] = useState(false);
   const [cameraVisible, setCameraVisible] = useState(false);
   
-
   const checkCameraPermission = async () => {
     if (Platform.OS === "android") return true;
 
@@ -80,7 +79,6 @@ export default function ScanScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.scanButtonView}>
-        {/* <Button title="Scan QR Code" onPress={scanQRHandler} /> */}
         <Button
           btnStyle={styles.primaryBtn}
           textStyle={styles.primaryBtnText}
@@ -95,7 +93,7 @@ export default function ScanScreen() {
             onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}>
             </CameraView>
 
-            {/* Overlay */}
+        {/* Overlay */}
         <View pointerEvents="none" style={styles.overlayContainer}>
           <View style={styles.overlayTop} />
           <View style={styles.overlayMiddle}>
@@ -107,7 +105,6 @@ export default function ScanScreen() {
         </View>
         
           <View style={styles.closeButton}>
-            {/* <Button title="Close Camera" onPress={() => setCameraVisible(false)} /> */}
           <Button
             btnStyle={styles.primaryBtn}
             textStyle={styles.primaryBtnText}
@@ -118,11 +115,6 @@ export default function ScanScreen() {
         </View>
       )}
       
-       {/* {scanned && cameraVisible && (
-        <View style={styles.scanMoreView}>
-          <Button title="Scan Again" onPress={() => setScanned(false)} />
-        </View>
-      )} */}
     </View>
   );
 }
