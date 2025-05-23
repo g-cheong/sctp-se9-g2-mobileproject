@@ -112,7 +112,7 @@ export default function CreateProductScreen() {
           value={formFields.category}
           labelField="label"
           valueField="value"
-          placeholder="Select Item"
+          placeholder="Category"
           onChange={ item => {
             handleInputChange("category", item.value);
           }}
